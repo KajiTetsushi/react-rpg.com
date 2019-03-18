@@ -22,6 +22,7 @@ rules:
         ImportDeclaration: true
   no-undef-init: warn
   no-undefined: warn
+  react/jsx-no-bind: warn
   computed-property-spacing:
     - warn
     - never
