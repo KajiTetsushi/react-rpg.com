@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect }         from 'react-redux';
+import React, { useCallback, useState } from 'react';
+import { connect }                      from 'react-redux';
 
 import Button         from '../../../../components/button';
 import ConfirmDialog  from '../../../../components/confirm-dialog';
@@ -13,6 +13,16 @@ const SettingsDialog = ({ resetGameState, closeSettings }) => {
 
   const [confirmQuit, setConfirmQuit] = useState(false);
 
+  const handleQuitButtonClick = useCallback(
+    () => setConfirmQuit(true),
+    []
+  );
+
+  const handleQuitDialogClose = useCallback(
+    () => setConfirmQuit(false),
+    []
+  )
+
   return(
     <Dialog>
       <div className='flex-column settings-dialog__container'>
@@ -21,7 +31,7 @@ const SettingsDialog = ({ resetGameState, closeSettings }) => {
         </span>
 
         <Button
-          onClick={() => setConfirmQuit(true)}
+          onClick={handleQuitButtonClick}
           icon='caret-square-left'
           title='Return to Menu' />
 
@@ -34,7 +44,7 @@ const SettingsDialog = ({ resetGameState, closeSettings }) => {
       <ConfirmDialog
         open={confirmQuit}
         text='Are you sure you want to quit? You will lose all progress...'
-        onClose={() => setConfirmQuit(false)}
+        onClose={handleQuitDialogClose}
         confirm={resetGameState} />
 
     </Dialog>

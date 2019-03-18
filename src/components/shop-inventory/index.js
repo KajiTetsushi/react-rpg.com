@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect }         from 'react-redux';
+import React, { useState, useCallback } from 'react';
+import { connect }                      from 'react-redux';
 
 import ShopItem              from './shop-item';
 import shopItems             from './shop-items';
@@ -35,15 +35,25 @@ const ShopInventory = ({ stats, inventory }) => {
     if(item.type === 'upgrade::backpack' &&
       inventory.maxItems === MAX_ITEMS_UPGRADE) return;
 
+    const buyShopItem = useCallback(
+      () => setBuyItem(item),
+      []
+    );
+
     shopInventoryItems.push(
       <ShopItem
         key={uuidv4()}
         item={item}
-        buyItem={() => setBuyItem(item)} />
+        buyItem={buyShopItem} />
     );
   });
 
   const MAX_PAGE = Math.ceil(shopInventoryItems.length / ITEMS_PER_PAGE) - 1;
+
+  const handleItemClose = useCallback(
+    () => setBuyItem(false),
+    []
+  );
 
   return (
     <div className='flex-column shop-inventory__container'>
@@ -52,7 +62,7 @@ const ShopInventory = ({ stats, inventory }) => {
         open={Boolean(buyItem)}
         buy={true}
         data={buyItem}
-        onClose={() => setBuyItem(false)} />
+        onClose={handleItemClose} />
 
       { shopInventoryItems.splice(5 * page, ITEMS_PER_PAGE) }
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect }         from 'react-redux';
+import React, { useCallback, useState } from 'react';
+import { connect }                      from 'react-redux';
 
 import Button          from '../../../../components/button';
 import Dialog          from '../../../../components/dialog';
@@ -15,14 +15,24 @@ const ShopDialog = ({ closeDialog }) => {
   const [welcome, setWelcome] = useState(true);
   const [sellItems, setSellItems] = useState(null);
 
+  const handleClose = useCallback(
+    () => setSellItems(null),
+    []
+  );
+
   function handleOpenSellItems() {
     setSellItems(
       <SellItemsDialog
-        onClose={() => setSellItems(null)} />
+        onClose={handleClose} />
     );
   }
 
   if(welcome) {
+    const handleShopButtonClick = useCallback(
+      () => setWelcome(false),
+      []
+    );
+
     return(
       <Dialog>
         <div className='flex-column space-between flex-1'>
@@ -48,7 +58,7 @@ const ShopDialog = ({ closeDialog }) => {
 
             <Button
               small
-              onClick={() => setWelcome(false)}
+              onClick={handleShopButtonClick}
               icon='angle-double-right'
               title={'Shop'} />
           </div>

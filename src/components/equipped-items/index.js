@@ -27,6 +27,7 @@ const EquippedItems = ({ stats, unequipItem }) => {
         {
           armor && armor.helmet ?
             <button className='equipped-items__slot'
+              // eslint-disable-next-line
               onClick={() => unequipItem(armor.helmet)}
               style={{ backgroundImage: `url('${armor.helmet.image}')` }}>
               <DarkenSlot />
@@ -41,6 +42,7 @@ const EquippedItems = ({ stats, unequipItem }) => {
         {
           armor && armor.body ?
             <button className='equipped-items__slot'
+              // eslint-disable-next-line
               onClick={() => unequipItem(armor.body)}
               style={{ backgroundImage: `url('${armor.body.image}')` }}>
               <DarkenSlot />
@@ -68,6 +70,7 @@ const EquippedItems = ({ stats, unequipItem }) => {
           {
             armor && armor.pants ?
               <button className='equipped-items__slot'
+                // eslint-disable-next-line
                 onClick={() => unequipItem(armor.pants)}
                 style={{ backgroundImage: `url('${armor.pants.image}')` }}>
                 <DarkenSlot />
@@ -81,6 +84,7 @@ const EquippedItems = ({ stats, unequipItem }) => {
           {
             armor && armor.gloves ?
               <button className='equipped-items__slot'
+                // eslint-disable-next-line
                 onClick={() => unequipItem(armor.gloves)}
                 style={{ backgroundImage: `url('${armor.gloves.image}')` }}>
                 <DarkenSlot />
@@ -97,6 +101,7 @@ const EquippedItems = ({ stats, unequipItem }) => {
           {
             ring ?
               <button className='equipped-items__slot'
+                // eslint-disable-next-line
                 onClick={() => unequipItem(ring)}
                 style={{ backgroundImage: `url('${ring.image}')` }}>
                 <DarkenSlot />
@@ -111,6 +116,7 @@ const EquippedItems = ({ stats, unequipItem }) => {
           {
             weapon ?
               <button className='equipped-items__slot'
+                // eslint-disable-next-line
                 onClick={() => unequipItem(weapon)}
                 style={{ backgroundImage: `url('${weapon.image}')` }}>
                 <DarkenSlot />
@@ -139,6 +145,7 @@ const EquippedItems = ({ stats, unequipItem }) => {
           {
             armor && armor.boots ?
               <button className='equipped-items__slot'
+                // eslint-disable-next-line
                 onClick={() => unequipItem(armor.boots)}
                 style={{ backgroundImage: `url('${armor.boots.image}')` }}>
                 <DarkenSlot />

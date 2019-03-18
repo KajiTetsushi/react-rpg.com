@@ -93,18 +93,21 @@ const ViewItem = ({ sell, buy, onClose, data, stats, unequipItem, buyItem,
 
   if(buy) ViewItemButtons = (
     <Button
+      // eslint-disable-next-line
       onClick={() => setConfirmBuy(true)}
       icon='coins'
       title={'Buy Item'} />
   );
   else if(sell) ViewItemButtons = (
     <Button
+      // eslint-disable-next-line
       onClick={() => setConfirmSell(true)}
       icon='coins'
       title={'Sell Item'} />
   );
   else if(itemIsEquipped) ViewItemButtons = (
     <Button
+      // eslint-disable-next-line
       onClick={() => {
         unequipItem(data);
         onClose();
@@ -115,6 +118,7 @@ const ViewItem = ({ sell, buy, onClose, data, stats, unequipItem, buyItem,
   else ViewItemButtons = (
     <>
       <Button
+        // eslint-disable-next-line
         onClick={() => setConfirmDrop(true)}
         icon='trash'
         title={'Drop'} />
@@ -122,11 +126,13 @@ const ViewItem = ({ sell, buy, onClose, data, stats, unequipItem, buyItem,
       {
         data.type === 'potion' ?
           <Button
+            // eslint-disable-next-line
             onClick={() => setConfirmPotion(true)}
             icon='medkit'
             title={'Heal'} />
           :
           <Button
+            // eslint-disable-next-line
             onClick={() => {
               equipItem(data);
               onClose();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import Backpack      from '../inventory-dialog/backpack.png';
 import BackpackItems from '../../../../components/backpack-items';
@@ -10,6 +10,10 @@ import './styles.scss';
 const SellItemsDialog = ({ onClose }) => {
 
   const [sellItem, setSellItem] = useState(false);
+  const handleClick = useCallback(
+    () => setSellItem(false),
+    []
+  );
 
   return(
     <MicroDialog onClose={onClose} fullsize className='centered'>
@@ -18,12 +22,13 @@ const SellItemsDialog = ({ onClose }) => {
         open={Boolean(sellItem)}
         data={sellItem}
         sell={true}
-        onClose={() => setSellItem(false)} />
+        onClose={handleClick} />
 
       <div className='flex-column sell-items__container'
         style={{backgroundImage: `url(${Backpack})`}}>
 
         <BackpackItems
+          // eslint-disable-next-line
           viewItem={item => setSellItem(item)} />
 
       </div>

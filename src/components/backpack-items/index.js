@@ -1,5 +1,5 @@
-import React       from 'react';
-import { connect } from 'react-redux';
+import React, { useCallback, useState } from 'react';
+import { connect }                      from 'react-redux';
 
 import EmptySlot             from '../empty-slot';
 import { MAX_ITEMS_UPGRADE } from '../../config/constants';
@@ -16,9 +16,14 @@ const BackpackItems = ({ viewItem, inventory }) => {
   const itemSlots = new Array(maxItems).fill(null);
 
   for(let i = 0; i < items.length; i ++) {
+    const handleItemButtonClick = useCallback(
+      () => viewItem(items[i]),
+      []
+    );
+
     itemSlots[i] = (
       <button
-        onClick={() => viewItem(items[i])}
+        onClick={handleItemButtonClick}
         style={{
           backgroundImage: `url('${items[i].image}')`,
           width: '40px',

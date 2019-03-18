@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import Backpack      from './backpack.png';
 import BackpackItems from '../../../../components/backpack-items';
@@ -11,6 +11,10 @@ import './styles.scss';
 const InventoryDialog = () => {
 
   const [viewItem, setViewItem] = useState(false);
+  const handleClose = useCallback(
+    () => setViewItem(false),
+    []
+  );
 
   return(
     <Dialog>
@@ -18,7 +22,7 @@ const InventoryDialog = () => {
       <ViewItem
         open={Boolean(viewItem)}
         data={viewItem}
-        onClose={() => setViewItem(false)} />
+        onClose={handleClose} />
 
       <div className='flex-row inventory-dialog__container'>
 
@@ -31,6 +35,7 @@ const InventoryDialog = () => {
             style={{backgroundImage: `url(${Backpack})`}}>
 
             <BackpackItems
+              // eslint-disable-next-line
               viewItem={item => setViewItem(item)} />
 
           </div>

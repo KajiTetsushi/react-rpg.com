@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { connect }                    from 'react-redux';
-import { isMobile }                   from 'react-device-detect';
+import React, { useCallback, useEffect, useState } from 'react';
+import { connect }                                 from 'react-redux';
+import { isMobile }                                from 'react-device-detect';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import DownloadAppPopup       from './components/download-app-popup';
@@ -45,11 +45,16 @@ const App = ({ appState, world }) => {
     showFooter = false;
   }
 
+  const handlePopupClose = useCallback(
+    () => setShowDownloadPopup(false),
+    []
+  );
+
   return(
     <>
       <DownloadAppPopup
         open={showDownloadPopup}
-        onClose={() => setShowDownloadPopup(false)} />
+        onClose={handlePopupClose} />
 
       <div className={`centered ${sideMenu ? 'flex-row' : 'flex-column'}`}>
 
